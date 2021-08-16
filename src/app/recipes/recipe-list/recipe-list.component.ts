@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Output, EventEmitter, OnInit } from '@angular/core';
 import { Recipe } from '../recipe.model';
 
 @Component({
@@ -7,6 +7,7 @@ import { Recipe } from '../recipe.model';
   styleUrls: ['./recipe-list.component.css']
 })
 export class RecipeListComponent implements OnInit {
+  @Output() selectedRecipe = new EventEmitter<Recipe>();
   recipes: Recipe[] = [
     new Recipe(
       'Southern Pimento Cheese',
@@ -17,6 +18,11 @@ export class RecipeListComponent implements OnInit {
       'Best-Ever Texas Caviar',
       `No fish are required for this beloved Texan dish. Black and pinto beans, along with corn, make up the base. Each bite is seasoned with peppers, cilantro, and a zippy sweet and sour dressing. This makes a great picnic dish in the South because there's no mayo to keep cool.`,
       `https://imagesvc.meredithcorp.io/v3/mm/image?url=https%3A%2F%2Fstatic.onecms.io%2Fwp-content%2Fuploads%2Fsites%2F43%2F2020%2F03%2F27%2F5850362-2000.jpg`
+    ),
+    new Recipe(
+      `Grandma's Chew Bread`,
+      `A southern style bar cookie loaded with brown sugar and pecans. Relax in the afternoon and chew on some of these.`,
+      `https://imagesvc.meredithcorp.io/v3/mm/image?url=https%3A%2F%2Fimages.media-allrecipes.com%2Fuserphotos%2F2508978.jpg`
     )
   ];
 
@@ -25,4 +31,7 @@ export class RecipeListComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  onSelectedRecipe(data: Recipe) {
+    this.selectedRecipe.emit(data);
+  }
 }
