@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Output, EventEmitter } from '@angular/core';
 
 @Component({
     selector: 'app-header',
@@ -7,5 +7,16 @@ import { Component } from '@angular/core';
 })
 
 export class HeaderComponent {
+    @Output() selected = new EventEmitter<string>();
     collapsed = true;
+
+    onSelect(title: string) {
+        let data;
+        if (title === 'recipe') {
+            data = 'RECIPE';
+        } else if (title === 'shoppingList') {
+            data = 'SHOPPING_LIST';
+        }
+        this.selected.emit(data);
+    }
 }
