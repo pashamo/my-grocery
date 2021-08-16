@@ -11,12 +11,7 @@ export class HeaderComponent {
     collapsed = true;
 
     onSelect(title: string) {
-        let data;
-        if (title === 'recipe') {
-            data = 'RECIPE';
-        } else if (title === 'shoppingList') {
-            data = 'SHOPPING_LIST';
-        }
+        let data = title === 'recipe' ? 'RECIPE' : 'SHOPPING_LIST';
         this.selected.emit(data);
     }
 }
